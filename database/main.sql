@@ -1,0 +1,8 @@
+CREATE DATABASE mindpad;
+GRANT ALL PRIVILEGES ON DATABASE mindpad TO postgres;
+
+CREATE TABLE notes (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    txt TEXT
+);
