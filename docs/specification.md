@@ -10,10 +10,13 @@
 
 ## Besoins fonctionnels
 
+![Use Case Diagram](conception/use-case-diagram.png)
+
 - **Prise des notes**:
   - Ability to create, edit, and delete notes.
 
-- **Categorization des notes**: 
+- **Categorization des notes**:
+
   - Tagging system to organize notes by categories.
   - Ability to create custom categories.
   - Option to view notes by category.
@@ -43,3 +46,35 @@
   - Fast loading times and responsive interactions.
   - Efficient data handling and storage.
   - Scalability to handle increasing numbers of users and notes.
+
+### Technical Specifications
+
+![Package Diagram](conception/diagram-package.png)
+
+#### Backend
+
+- **Framework**: Python Flask
+  - RESTful API architecture
+  - SQLAlchemy ORM for database interactions
+
+#### Frontend
+
+- **Framework**: React.js
+  - Modern functional components with hooks
+  - Responsive design for mobile/desktop
+
+#### Database
+
+- **PostgreSQL**
+  - Relational database design
+  - Indexes for optimized queries
+  - Full-text search capabilities
+
+### Deployment
+
+![Deployment Diagram](conception/diagrame-deployment.png)
+Linux Ubunto Server with:
+
+- Python 12
+- NodeJs 22 LTS
+- PostgreSQL 16 Server

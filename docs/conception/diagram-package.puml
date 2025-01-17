@@ -1,0 +1,20 @@
+@startuml
+
+package "Backend (Python Flask)" {
+    [RESTful API]
+    [SQLAlchemy ORM]
+}
+
+package "Frontend (React.js)" {
+  [React.js]
+}
+
+package "Database (PostgreSQL)" {
+  [PostgreSQL]
+}
+
+[React.js] --> [RESTful API] : "sends requests to"
+[RESTful API] --> [SQLAlchemy ORM] : "interacts with"
+[SQLAlchemy ORM] --> [PostgreSQL] : "queries"
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+node "User" {
+    [Browser]
+}
+
+node "Ubunto Server" {
+    [React.js Application]
+    [Flask API]
+    [PostgreSQL]
+}
+
+[Browser] --> [React.js Application] : HTTP Request
+[React.js Application] --> [Flask API] : API Call
+[Flask API] --> [PostgreSQL] : SQL Query
+
+@enduml
