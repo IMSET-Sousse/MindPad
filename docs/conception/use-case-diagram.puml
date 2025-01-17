@@ -1,0 +1,16 @@
+@startuml
+
+actor User
+
+User --> (Prise des notes)
+User --> (Categorization des notes)
+User --> (Lister les notes)
+User --> (Recherche de note)
+User --> (Filtration des notes)
+User --> (Create custom categories)
+User --> (View notes by category)
+User --> (Sort notes)
+User --> (Highlight search terms)
+User --> (Save filter settings)
+
+@enduml
