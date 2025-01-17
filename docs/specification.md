@@ -73,6 +73,7 @@
 ### Deployment
 
 ![Deployment Diagram](conception/diagrame-deployment.png)
+
 Linux Ubunto Server with:
 
 - Python 12
