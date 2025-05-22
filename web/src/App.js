@@ -1,21 +1,24 @@
+import { useEffect, useState } from 'react';
 import './App.css';
-import Note from './components/Note';
-import { useState, useEffect } from 'react';
+import Form from './components/Form';
+import NoteList from './components/NotesList';
 
 function App() {
 
   const [notes, setNotes] = useState([]);
+  const [added, setAdded] = useState(0)
 
   useEffect(() => {
     fetch('http://localhost:5000/api/notes')
       .then(response => response.json())
       .then(data => setNotes(data))
       .catch(error => console.error('Error fetching notes:', error));
-  }, []);
+  }, [added]);
 
   return (
     <div>
-      {notes.map((note) => (<Note key={note.id} title={note.title} txt={note.txt} />))}
+      <Form setAdded={setAdded}/>
+      <NoteList notes={notes}/>
     </div>
   );
 }

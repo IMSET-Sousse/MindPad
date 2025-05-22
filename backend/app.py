@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
@@ -6,17 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 CORS(app)
 
-
-config = {
-    "user" : "postgres",
-    "password" : "postgres",
-    "host" : "localhost",
-    "port" : 5432,
-    "database" : "mindpad"
-}
-
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{config["user"]}:{config["password"]}@{config["host"]}:{config["port"]}/{config["database"]}'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# SQLite configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mindpad.sqlite3'
 db = SQLAlchemy(app)
 
 
@@ -27,11 +18,32 @@ class Note(db.Model):
     txt = db.Column(db.Text)
 
 
-@app.route('/api/notes')
+@app.route('/api/notes', methods=['GET'])
 def notes():
     all_notes = Note.query.all()
-    notes_list = [{"id": note.id, "title": note.title, "txt": note.txt} for note in all_notes]
+
+    notes_list = [
+        {
+            "id": note.id,
+            "title": note.title,
+            "txt": note.txt
+        } for note in all_notes
+    ]
     return jsonify(notes_list)
+
+@app.route('/api/notes', methods=['POST'])
+def notes_add():
+    data = request.get_json()
+    title = data.get('title')
+    txt = data.get('txt')
+
+    new_note = Note(title=title, txt=txt)
+    db.session.add(new_note)
+    db.session.commit()
+    
+    return jsonify({
+        "message": "added note"
+    })
 
 @app.route('/api/todo/<int:id>')
 def todo_id(id):

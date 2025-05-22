@@ -1,4 +1,4 @@
-import styles from "./Note.module.css"
+import styles from "./Note.module.css";
 
 
 function Note(props) {
